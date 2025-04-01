@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+  <head>
+    <!-- 设置字符编码为 UTF-8 -->
+    <meta charset="UTF-8">
+    <!-- 设置浏览器以最新版本渲染页面 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 设置视口以适应不同设备屏幕，viewport-fit=cover 用于适配全面屏设备 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <!-- 设置页面标题 -->
+    <title>Nypan</title>
+    <!-- 设置页面作者 -->
+    <meta name="author" content="Nypan">
+    <!-- 设置页面版权信息 -->
+    <meta name="copyright" content="Nypan">
+    <!-- 禁止浏览器自动识别电话号码 -->
+    <meta name="format-detection" content="telephone=no">
+    <!-- 设置页面主题颜色 -->
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Open Graph 协议相关标签，用于在社交媒体分享时展示页面信息 -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="尼潘">
+    <meta property="og:url" content="https://sikan.moe/index.html">
+    <meta property="og:site_name" content="尼潘">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:image" content="https://sikan.moe/img/akas.png">
+    <meta property="article:author" content="Nypan">
+
+
+    <!-- 设置网站的 favicon -->
+    <link rel="shortcut icon" href="/DevB-main/img/touxiang.jpg">
+    <!-- 引入本地样式表 -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- 引入 Font Awesome 图标库，版本号为 6.x（假设） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.x/css/all.min.css">
+</head>    
+<body>
+  <div id="web_bg"></div>
+  <div id="sidebar">
+    <div id="menu-mask"></div>
+    <div id="sidebar-menus">
+      <div class="avatar-img is-center">
+        <img src="/DevB-main/img/touxiang.jpg" alt="avatar"/>
+      </div>
+      <div class="sidebar-site-data site-data is-center">
+        <a href="#articles">
+          <div class="headline">文章</div>
+          <div class="length-num">42</div>
+        </a>
+        <a href="#tags">
+          <div class="headline">标签</div>
+          <div class="length-num">7</div>
+        </a>
+        <a href="#categories">
+          <div class="headline">分类</div>
+          <div class="length-num">3</div>
+        </a>
+      </div>
+      <hr/>
+      <div class="menus_items">
+        <div class="menus_item">
+          <a class="site-page" href="#home">
+            <span>首页</span>
+          </a>
+        </div>
+        <div class="menus_item">
+          <a class="site-page" href="#Friends">
+            <span>友链</span>
+          </a>
+        </div>
+        <div class="menus_item">
+          <a class="site-page" href="#discover">
+            <span>发现</span>
+          </a>
+        </div>
+        <div class="menus_item">
+          <a class="site-page" href="#articles">
+            <span>文章</span>
+          </a>
+        </div>
+        <div class="menus_item">
+          <a class="site-page" href="#about">
+            <span>关于</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div id="root"></div>
+
+  <!-- React 和 Babel -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  
+  <!-- 错误处理 -->
+  <script>
+    window.addEventListener('error', function(e) {
+      console.log('捕获到错误:', e.message);
+    });
+  </script>
+  
+  <script type="text/babel" data-type="module" src="app.js"></script>
+  
+  <!-- 页面脚本 -->
+  <script>
+    // 暗黑模式切换
+    const switchDarkMode = () => {
+      const html = document.documentElement;
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+    };
+    
+    // 侧边栏切换
+    const toggleSidebar = () => {
+      document.body.classList.toggle('hide-sidebar');
+    };
+    
+    // 初始化主题
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    }
+    
+    // 检测设备
+    if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+      document.documentElement.classList.add('apple');
+    }
+  </script>
+</body>
+</html> 
